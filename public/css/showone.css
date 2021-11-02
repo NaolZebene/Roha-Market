@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+.buy {
+  display: flex;
+  height: auto;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .buy {
+    flex-direction: column;
+  }
+}
+
+.product-image {
+  flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  padding-right: 15px;
+  padding-left: 10px;
+  border: 10px;
+}
+
+.product-image img {
+  width: 95%;
+}
+
+.product-info {
+  flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+}
+
+@media (max-width: 600px) {
+  .product-info {
+    text-align: center;
+  }
+}
+
+h2 {
+  font-size: 2.5vw;
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 3vh;
+  }
+}
+
+.buy h1 {
+  font-size: 5vw;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 6vh;
+  }
+}
+
+.product-info p {
+  font-size: 2vh;
+  margin: 0;
+}
+
+.button {
+  background-color: #000;
+  border: none;
+  color: white;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 1vh;
+  margin-top: 8px;
+  width: 10%;
+}
+.buy a {
+  background-color: #000;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 800;
+  text-decoration: none;
+  margin-top: 5px;
+  padding: 1vh;
+  width: 90%;
+}
+
+@media (max-width: 600px) {
+  button {
+    width: 60%;
+  }
+  .buy a {
+    width: 60%;
+  }
+}
+
+button:hover {
+  background-color: #888;
+}
+.buy a:hover {
+  background-color: #888;
+}
+
+.details {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  height: auto;
+  justify-content: space-between;
+}
+input[textarea] {
+  width: 100px;
+}
+
+@media (max-width: 600px) {
+  .details {
+    flex-direction: column;
+  }
+}
+
+.product-description {
+  flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  padding: 2vw;
+}
+
+.product-description p {
+  font-size: 2.5vh;
+}
+
+.product-details {
+  flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  padding: 2vw;
+}
+
+.product-details p,
+ul {
+  font-size: 2.5vh;
+}

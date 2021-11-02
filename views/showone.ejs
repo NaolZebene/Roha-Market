@@ -1,0 +1,150 @@
+<% layout('boilerplate') %>
+
+
+<div class="container">
+<section class="buy">
+  <div class="product-image">
+    <img src="<%= oneData.image%>">
+  </div>
+  <div class="product-info">
+    <h1><%=oneData.name%> </h1>
+    <h3><%=oneData.category%> </h3>
+    <h3>$<%=oneData.price%> </h3>
+    <%if(!currentUser.isAdmin){%> 
+      <a class="button" href="/add/<%= oneData._id %>">Add to Carts</a> 
+     <a href="#" class="button "><%=oneData.price%>$ Purchse</a>
+
+ <% } else { %> 
+ <a href="/roha/<%=oneData._id%>/edit" class="button">Edit</a>
+ <form action="/roha/<%=oneData._id%>?_method=delete " method="post">
+   <button class="button">Delete</button>
+ </form>
+
+<%} %> 
+
+  </div>
+</section>
+
+<section class="details">
+  <div class="product-description">
+    <p><%=oneData.description%> </p>
+  </div>
+</section>
+
+<form action="/roha/<%=oneData._id%>/comments" method="POST" novalidate class="validated-form">
+  <div class="mb-3">
+    <fieldset class="starability-basic">
+      <legend>Rating</legend>
+      <input type="radio" id="first-rate1" name="user[rating]" value="1" />
+      <label for="first-rate1" title="Terrible">1 star</label>
+      <input type="radio" id="first-rate2" name="user[rating]" value="2" />
+      <label for="first-rate2" title="Not good">2 stars</label>
+      <input type="radio" id="first-rate3" name="user[rating]" value="3" />
+      <label for="first-rate3" title="Average">3 stars</label>
+      <input type="radio" id="first-rate4" name="user[rating]" value="4" />
+      <label for="first-rate4" title="Very good">4 stars</label>
+      <input type="radio" id="first-rate5" name="user[rating]" value="5" />
+      <label for="first-rate5" title="Amazing">5 stars</label>
+    </fieldset>
+  </div>
+  <div>
+    <label for="body" class="form-label"> Comment</label>
+    <textarea class="form-comment" name="user[comment]" id="body" cols="30" rows="3" required></textarea>
+  </div>
+  <button class="button">Add Review</button>
+</form>
+<% for(let comments of oneData.comments){ %>
+  <div class="card mb-3">
+    <h4 class="card-title"><%=comments.author.username %> </h4>
+  <p class="card-text"><%= comments.comment%></p>
+    <% if(currentUser && currentUser.id == comments.author._id){ %>  
+    <form action="/roha/<%=oneData._id%>/comments/<%=comments._id %>?_method=delete" method="post">
+      <button class="button">Delete</button>
+    </form>
+  <% } %> 
+  </div>
+<% } %> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+<div class="col-6">
+<div class="card mt-5 ml-5 mr-0">
+    <img src="/images/<= oneData.image%> " class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><=oneData.name %> </h5>
+      <h5><=oneData.category%></h5>
+      <p class="card-text"><=oneData.description %> </p>
+      <p class="text-muted"><=oneData.address%></p>
+      <div class="row justify-content-between ml-2 mr-2">
+        < if(!currentUser.isAdmin){%> 
+           <a class="btn btn-outline-danger" href="/add/<= oneData._id %>">Add to Carts</a> 
+          <a href="#" class="btn btn-outline-warning ml-2"><=oneData.price%>$ Purchse</a>
+     
+      < } else { %> 
+      <a href="/roha/<=oneData._id%>/edit" class="btn btn-outline-warning ml-2">Edit</a>
+      <form action="/roha/<=oneData._id%>?_method=delete " method="post">
+        <button class="btn btn-danger ml-2">Delete</button>
+      </form>
+     
+     < } %> 
+    
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col-6 mt-5" >
+    < if(currentUser){ %> 
+      <form action="/roha/<oneData._id%>/comments" method="POST" novalidate class="validated-form">
+        <div class="mb-3">
+          <fieldset class="starability-basic">
+            <legend>Rating</legend>
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating] " value="0" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="user[rating]" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="user[rating]" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="user[rating]" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="user[rating]" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="user[rating]" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>
+        <div>
+          <label for="body" class="form-label"> Comment</label>
+          <textarea class="form-control mb-3" name="user[comment]" id="body" cols="30" rows="3" required></textarea>
+        </div>
+        <button class="btn btn-success mb-3">Add Review</button>
+      </form>
+  <} %>  
+  
+  </div>
+
+  </div>

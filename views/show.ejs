@@ -1,0 +1,100 @@
+  <% layout('boilerplate') %> 
+       
+  
+  <header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+
+            <!-- ሮሀ ገበያ 
+        ሁሉንም ከሮሀ ገበያ ይሸምቱ  -->
+            <h1 class="display-4 fw-bolder">ሮሀ ገበያ </h1>
+            <p class="lead fw-normal text-white-50 mb-0">ሁሉንም ከሮሀ ገበያ ይሸምቱ</p>
+        </div>
+    </div>
+</header>
+
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+        <% for(let data of datas){ %> 
+          <div class="col mb-5" >
+              <div class="card h-100" id="product-card">
+                  <!-- Product image-->
+                  <img class="card-img-top" src=<%=data.image%> alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder"><%=data.name%> </h5>
+                          <!-- Product price-->
+                          $<%=data.price%> 
+                      </div>
+                      <div class="text-center">
+                        <p> <%=data.category%></p>
+                        <p class="text-disable"><%=data.address %> </p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/roha/<%=data._id%> ">View More</a></div>
+                  </div>
+              </div>
+          </div>
+          <% } %> 
+      </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <!-- <div class="row justify-content-evenly">
+   /**for (let data of datas){*/ 
+        
+         <div class="card  col-3 " >
+         <img src="/images//*data.image " alt="" srcset="">
+         <div class="card-body">
+           <p class="card-text">/*=data.description */%></p>
+           <div class="row justify-content-between">
+           <a class="btn btn-outline-success" href="roha/</*data._id%> ">More</a>
+         
+           </div>
+         </div>
+         </div>  
+               
+         </* }*/ %>
+        
+        </div> -->

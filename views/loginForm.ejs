@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+   
+
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <h2 class="active"> Sign In </h2>
+      <h2 class="inactive underlineHover"><a href="/register"> Sign Up </a></h2>
+      <div class="fadeIn first">
+        <h2 class="active"> Roha Gebeya</h2>
+      </div>
+      <form action="/login" class="validated-form" method="post">
+        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" required>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
+        <input type="submit" class="fadeIn fourth" value="Log In" id="loginbutton">
+      </form>  
+    </div>
+  </div>
+
+<script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('validated-form');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
+</body>

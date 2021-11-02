@@ -1,0 +1,79 @@
+<% layout('boilerplate') %>
+<table class="container">
+  <thead>
+    <tr>
+      <th><h1>Category name</h1></th>
+      <th><h1>Name</h1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(datas of data){ %> 
+    <tr>
+      <td><%=datas.categoryname %></td>
+      <td><a class="btn btn-outline-danger" href="/categories/<%=datas._id%>">Delete</a></td>
+    </tr>
+    <% } %> 
+ 
+
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+    <div class="col-6 offset-3 ">
+    <table class="table table-dark ml-5" style="width: 400px" >
+      <thead>
+        <tr>
+          <th scope="col">Category name</th>
+          <th scope="col">Delete</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      </* for(datas of data ){ %> 
+      
+   
+            <tr>
+              <td scope="row"></* datas.categoryname %></td>
+              <td><a class="btn btn-outline-danger" href="/categories/<=datas._id%>">Delete</a></td>
+            </tr>
+     
+      < } %> 
+    </tbody>
+    </table>    
+  </div>
+      </div>  -->
