@@ -18,7 +18,7 @@
       <% var sub = parseFloat(cart.price).toFixed(2) %>
       <% total += +sub %>  
           <tr>
-            <td><img style="width: 100px; height: 100px ; object-fit: contain;" src="<%=cart.image%> " alt=""></td>
+            <td><img style="width: 100px; height: 100px ; object-fit: contain;" src="<%=cart.image[0].url%>" alt=""></td>
             <td><%=cart.name%></td>
             <td>$<%=cart.price%></td>
             <td><%=cart.category %> </td>
@@ -30,7 +30,7 @@
       <td>$<%=parseFloat(total) %> </td>
       
      </tr>
-     <td> <a style="margin-top: 30px;" class="btn btn-warning" href="$">Purchase For $<%=parseFloat(total)%> </a></td>
+     <td> <a style="margin-top: 30px;" class="btn btn-warning" href="/buy">Purchase For $<%=parseFloat(total)%> </a></td>
      <td> <a class="btn btn-danger" href="/carts/delete%>"> Clear Cart</a></td>
      
     </tbody>

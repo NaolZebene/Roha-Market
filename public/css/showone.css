@@ -27,6 +27,7 @@
 
 .product-image img {
   width: 95%;
+  height: 70%;
 }
 
 .product-info {
@@ -73,7 +74,7 @@ h2 {
   background-color: #000;
   border: none;
   color: white;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   cursor: pointer;
   font-weight: 800;
   padding: 1vh;
@@ -114,7 +115,7 @@ button:hover {
   display: -moz-box;
   display: -ms-flexbox;
   height: auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 input[textarea] {
   width: 100px;
@@ -131,22 +132,9 @@ input[textarea] {
   -moz-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
-  padding: 2vw;
+  /* padding: 2vw; */
 }
 
 .product-description p {
-  font-size: 2.5vh;
-}
-
-.product-details {
-  flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  padding: 2vw;
-}
-
-.product-details p,
-ul {
   font-size: 2.5vh;
 }

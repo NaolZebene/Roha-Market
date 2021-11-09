@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router(); 
 const{addProductForm,addCategory,showCategories,deleteCategory,addProduct,editProductForm,editProduct,addCategoriesForm,removeProduct} = require("../controls/adminControl")
 const ExpressError = require('../utils/ExpressError')
+const {storage} = require('../cloudinary'); 
+const multer = require('multer'); 
+const upload = multer({storage}); 
+
 const isLoggedIn = function (req, res, next) {
     if (!req.isAuthenticated()) {
       req.session.returnTo = req.originalUrl;
@@ -18,9 +22,10 @@ const validateProduts = function(req, res, next ){
     roha : Joi.object({
       name: Joi.string().required(), 
       price:Joi.number().required(),
-      image:Joi.string().required(), 
+      image:Joi.array().required, 
       category: Joi.string().required(),
-      description:Joi.string()
+      description:Joi.string(), 
+      address:Joi.string().required()
     }).required()
   })
 
@@ -36,9 +41,10 @@ const validateProduts = function(req, res, next ){
 
 
 router.get('/admin',isLoggedIn,addProductForm)
-router.post('/roha', isLoggedIn,validateProduts ,addProduct)
-router.get('/roha/:id', isLoggedIn, editProductForm)
-router.put('/roha/:id' ,isLoggedIn, editProduct)
+// router.post('/roha', isLoggedIn,validateProduts ,addProduct)
+router.post('/roha',upload.array('image'),validateProduts,isLoggedIn,addProduct)
+router.get('/roha/:id/edit', isLoggedIn,editProductForm)
+router.put('/roha/:id/edit',upload.array('image'),isLoggedIn, editProduct)
 router.delete('/roha/:id', isLoggedIn,removeProduct)
 
 router.get('/addcategories', isLoggedIn,addCategoriesForm)

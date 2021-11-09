@@ -1,5 +1,5 @@
 /**IMPORTING DATAS */
-
+ require('dotenv').config()
 
 const express = require("express");
 const ejs = require("ejs");
@@ -23,8 +23,8 @@ const PORT = 3000;
 
 
 /**CONNECTING TO MONGOOSE DATABASE */
-mongoose
-  .connect("mongodb://localhost/roha-gebeya", {
+
+  mongoose.connect("mongodb://localhost/roha-gebeya", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })

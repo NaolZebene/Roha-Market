@@ -4,7 +4,9 @@
 <div class="container">
 <section class="buy">
   <div class="product-image">
-    <img src="<%= oneData.image%>">
+   <% for(img of oneData.image){ %>
+    <img src="<%=img.url%> " alt="">
+    <% } %>  
   </div>
   <div class="product-info">
     <h1><%=oneData.name%> </h1>
@@ -24,35 +26,38 @@
 
   </div>
 </section>
-
+</div>
 <section class="details">
   <div class="product-description">
     <p><%=oneData.description%> </p>
   </div>
 </section>
-
+<div class="container">
+<% if(!currentUser.isAdmin){ %> 
 <form action="/roha/<%=oneData._id%>/comments" method="POST" novalidate class="validated-form">
   <div class="mb-3">
-    <fieldset class="starability-basic">
-      <legend>Rating</legend>
-      <input type="radio" id="first-rate1" name="user[rating]" value="1" />
-      <label for="first-rate1" title="Terrible">1 star</label>
-      <input type="radio" id="first-rate2" name="user[rating]" value="2" />
-      <label for="first-rate2" title="Not good">2 stars</label>
-      <input type="radio" id="first-rate3" name="user[rating]" value="3" />
-      <label for="first-rate3" title="Average">3 stars</label>
-      <input type="radio" id="first-rate4" name="user[rating]" value="4" />
-      <label for="first-rate4" title="Very good">4 stars</label>
-      <input type="radio" id="first-rate5" name="user[rating]" value="5" />
-      <label for="first-rate5" title="Amazing">5 stars</label>
-    </fieldset>
-  </div>
+<fieldset class="starability-basic">
+  <legend>Leave A Review</legend>
+  <input type="radio" id="no-rate" class="input-no-rate" name="user[rating]" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="user[rating]" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="user[rating]" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="user[rating]" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="user[rating]" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="user[rating]" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+</div>
   <div>
     <label for="body" class="form-label"> Comment</label>
     <textarea class="form-comment" name="user[comment]" id="body" cols="30" rows="3" required></textarea>
   </div>
   <button class="button">Add Review</button>
 </form>
+<% } %> 
 <% for(let comments of oneData.comments){ %>
   <div class="card mb-3">
     <h4 class="card-title"><%=comments.author.username %> </h4>
@@ -65,7 +70,7 @@
   </div>
 <% } %> 
 </div>
-
+</div>
 
 
 

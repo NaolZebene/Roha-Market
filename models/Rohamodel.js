@@ -26,10 +26,12 @@ const RohaSchema = new Schema({
         type:String, 
         required:true
     },
-    image:{
-        type:String, 
-        required:true
-    }, 
+    image:[
+        {
+             url: String, 
+             filename: String
+        }
+    ], 
     comments:[
         {
             type:mongoose.Types.ObjectId,

@@ -6,11 +6,28 @@ const Category = require("../models/Category")
 
 
 
+module.exports.addProduct = async function (req, res) {
+  const {isAdmin} = req.user; 
+  const datas = req.body.roha;
+  if(!isAdmin){
+    return res.redirect('/roha')
+  }
+  const data = new Rohamodel(datas);
+  data.image = req.files.map(fileData =>({
+    url: fileData.path, 
+    filename: fileData.filename
+  }))
+  await data.save();
+
+  req.flash('success', 'Added a Product Successfully')
+  res.redirect("/roha");
+}
+
 
 
 module.exports.addCategory = wrapAsync(async function(req,res){
     const data = req.body
-    // console.log(data)
+  
     const addedData = new Category(data);
     await addedData.save()
     req.flash('success', 'Added A Category')
@@ -27,24 +44,15 @@ module.exports.showCategories = wrapAsync(async function(req,res){
 
 module.exports.deleteCategory = wrapAsync(async function(req,res){
     const { id } = req.params; 
-    console.log(id)
+  
     await Category.findByIdAndDelete(id); 
     res.redirect('/categories')
-    // res.render('category', {data})
+
   })
 
-module.exports.addProduct = wrapAsync(async function (req, res) {
-    const {isAdmin} = req.user; 
-    const datas = req.body.roha;
-    console.log(datas)
-    if(!isAdmin){
-      return res.redirect('/roha')
-    }
-    const data = new Rohamodel(datas);
-    await data.save();
-    req.flash('success', 'Added a Product Successfully')
-    res.redirect("/roha");
-  })
+
+
+
 
 module.exports.editProductForm = wrapAsync(async function (req, res) {
     const {isAdmin} = req.user
@@ -58,7 +66,7 @@ module.exports.editProductForm = wrapAsync(async function (req, res) {
   })
 
 
-module.exports.editProduct = wrapAsync(async function (req, res) {
+module.exports.editProduct = async function (req, res) {
     const data = req.body;
     
     const {isAdmin} = req.user
@@ -69,10 +77,15 @@ module.exports.editProduct = wrapAsync(async function (req, res) {
     const updatedData = await Rohamodel.findByIdAndUpdate(id, data, {
       runValidators: true,
     });
+    updatedData.image = req.files.map(fileData =>({
+      url: fileData.path, 
+      filename: fileData.filename
+    }))
+    await updatedData.save()
     req.flash('success', 'Updated a Product Successfully')
     res.redirect(`/roha/${updatedData._id}`);
   
-  })
+  }
 
 
 module.exports.addCategoriesForm = function(req,res){
@@ -100,5 +113,5 @@ module.exports.removeProduct = wrapAsync(async function (req, res) {
       return res.redirect("/roha");
     }
     const category = await Category.find()
-    res.render("admin",{category});
+    res.render("addProducts",{category});
   })

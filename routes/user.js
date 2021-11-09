@@ -1,6 +1,6 @@
 const express = require('express'); 
 const router = express.Router(); 
-const {getAllProducts,getOneProduct,addToCarts,getCarts,clearCart,removeComment,postComment} = require('../controls/userControl')
+const {getAllProducts,getOneProduct,addToCarts,getCarts,clearCart,removeComment,postComment,buyProducts} = require('../controls/userControl')
 const ExpressError = require('../utils/ExpressError')
 const Joi = require('joi')
 const isLoggedIn = function (req, res, next) {
@@ -37,6 +37,7 @@ router.delete('/roha/:id/comments/:commentsId',isLoggedIn,removeComment)
 router.get('/add/:id', isLoggedIn,addToCarts)
 router.get('/carts',isLoggedIn,getCarts)
 router.get('/carts/delete',isLoggedIn,clearCart)
+router.get('/buy',isLoggedIn,buyProducts)
 
 
 module.exports = router; 

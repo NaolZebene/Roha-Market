@@ -33,7 +33,7 @@ const Admin = {
 }
 
 userClean = async function(){
-    await Users.deleteMany({})
+   await Users.deleteMany({})
     const {email , username , password , isAdmin } = Admin ; 
     const userAdmin = new Users({email, username,isAdmin}); 
     const registeredAdmin = await Users.register(userAdmin , password); 

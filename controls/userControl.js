@@ -14,7 +14,7 @@ module.exports.getOneProduct = wrapAsync (async function (req, res) {
     const userId = req.user.id; 
     const user = await User.findById(userId); 
     const data = user.isCarted; 
-    console.log(data)
+   
     const oneData = await Rohamodel.findById(id).populate({
       path: "comments",
       populate: {
@@ -34,14 +34,13 @@ module.exports.postComment = wrapAsync(async function (req, res) {
     data.comments.push(comment);
     await comment.save();
     await data.save();
+  
     req.flash('success', 'Added A review Successfully')
     res.redirect(`/roha/${data._id}`);
   })
 module.exports.addToCarts = wrapAsync(async function(req, res){
     const { id } = req.params; 
-  
     const cartData = await Rohamodel.findById(id);
-  
     const cartSatate = req.session.carts;
     if(cartSatate == undefined){
       req.session.carts = []; 
@@ -98,3 +97,7 @@ module.exports.removeComment = wrapAsync(async function (req, res) {
   req.flash('success', 'Deleted A Review Successfully')
   res.redirect(`/roha/${id}`);
 })
+
+module.exports.buyProducts = function(req,res){
+  res.send('Coming Soon');
+}
